@@ -1,17 +1,18 @@
 <template>
   <div class="editor-inputs">
     <label for="title">Title</label>
-    <input v-model="ad.title" type="text" id="title">
+    <input v-model="ad.title" @input="lelijkeDingen" type="text" id="title">
     <label for="message">Message</label>
-    <textarea v-model="ad.message" id="message" rows="10"></textarea>
+    <textarea v-model="ad.message" @input="lelijkeDingen" id="message" rows="10"></textarea>
     <label for="vacancy-title">Vacacy title</label>
-    <input v-model="ad.vacancyTitle" type="vacancy-title" id="">
+    <input v-model="ad.vacancyTitle" @input="lelijkeDingen" type="vacancy-title" id="">
     <label for="vacancy-description">Vacacy Description</label>
-    <textarea v-model="ad.vacancyDescription" id="vacancy-description" rows="10"></textarea>
+    <textarea v-model="ad.vacancyDescription" @input="lelijkeDingen" id="vacancy-description" rows="10"></textarea>
   </div>
 </template>
 <script>
   import { mapState } from 'vuex'
+  import { debounce } from 'lodash'
 
   export default {
     computed: {
@@ -19,6 +20,14 @@
         'ad'
       ])
     },
+    mounted() {
+      this.lelijkeDingen = debounce(this.lelijkeDingen, 1000);
+    },
+    methods: {
+      lelijkeDingen() {
+        this.$store.commit('lelijkeHack');
+      }
+    }
   }
 </script>
 <style>

@@ -16,7 +16,6 @@
         <p v-html="highLightedVacancyDescription"/>
       </template>
     </facebook-ad>
-    <button @click="bla">Bla</button>
   </div>
 </template>
 <script>
@@ -48,7 +47,6 @@
           spans.forEach(el => {
             let adviceId = el.getAttribute('adviceId');
             let self = this;
-            console.log(self)
             if (adviceId) {
               el.addEventListener('mouseover', function(e) {
                 let x = document.getElementsByClassName("selected");
@@ -106,9 +104,6 @@
         this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
           return adviceItem.sys.id === id;
         })
-      },
-      bla() {
-        this.ad.title = 'Jelemr';
       },
     },
   }
