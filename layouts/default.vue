@@ -2,7 +2,7 @@
   <div>
     <h1 class="site-title">
       <nuxt-link :to="{ path: '/' }" class="site-title__link">
-        Nuxt Demo
+        Joo dit is de ad expert
       </nuxt-link>
     </h1>
     <nuxt />
