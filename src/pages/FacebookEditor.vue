@@ -31,7 +31,7 @@ export default {
   .add-inputs {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 600px;
   }
 
   .add-frame {

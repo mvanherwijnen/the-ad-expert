@@ -7,7 +7,6 @@
 
 <script>
 import FacebookEditor from './pages/FacebookEditor.vue'
-import AddyAnimationFrame from './components/AddyAnimationFrame.vue'
 
 export default {
   name: 'app',

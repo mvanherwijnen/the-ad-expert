@@ -24,6 +24,7 @@
   import AddyAnimationFrame from './AddyAnimationFrame'
   import AdviceFrame from './AdviceFrame'
   import client from '../../plugins/contentful'
+  import { mapState } from 'vuex'
   import * as advisor from '../../plugins/advisor'
 
   export default {
@@ -34,12 +35,6 @@
     },
     data() {
       return {
-        ad: {
-          title: 'Lorem ipsum dolor sit amet',
-          message: '🌴 Amet aspernatur culpa, cumque enthousiaste dolor eos harum nemo nihil odio quia quidem',
-          vacancyTitle: 'Lorem ipsum dolor sit amet',
-          vacancyDescription: 'Amet aspernatur culpa, cumque debitis dolor eos familie nemo nihil odio quia quidem',
-        },
         test: '',
         adviceItems: [],
         currentAdviceItem: null,
@@ -53,6 +48,7 @@
           spans.forEach(el => {
             let adviceId = el.getAttribute('adviceId');
             let self = this;
+            console.log(self)
             if (adviceId) {
               el.addEventListener('mouseover', function(e) {
                 let x = document.getElementsByClassName("selected");
@@ -69,6 +65,9 @@
       }
     },
     computed: {
+      ...mapState([
+        'ad'
+      ]),
       highLightedTitle() {
         return this.highlight('title');
       },
