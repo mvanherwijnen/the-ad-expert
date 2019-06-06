@@ -1,5 +1,5 @@
 <template>
-  <div class="ad-container">
+  <div class="ad-container" v-if="adviceItems">
     <facebook-ad>
       <template #ad-title>
         <h4 v-html="highLightedTitle"></h4>
@@ -14,11 +14,12 @@
         <p v-html="highLightedVacancyDescription"/>
       </template>
     </facebook-ad>
-    <input type="text" v-model="query">
   </div>
 </template>
 <script>
   import FacebookAd from './FacebookAd';
+  import client from '../../plugins/contentful'
+  import * as advisor from '../../plugins/advisor'
 
   export default {
     components: {
@@ -26,13 +27,13 @@
     },
     data() {
       return {
-        query: 'Lorem',
         ad: {
           title: 'Lorem ipsum dolor sit amet',
-          message: 'Amet aspernatur culpa, cumque debitis dolor eos harum nemo nihil odio quia quidem',
+          message: 'Amet aspernatur culpa, cumque enthousiaste dolor eos harum nemo nihil odio quia quidem',
           vacancyTitle: 'Lorem ipsum dolor sit amet',
           vacancyDescription: 'Amet aspernatur culpa, cumque debitis dolor eos harum nemo nihil odio quia quidem',
-        }
+        },
+        adviceItems: [],
       }
     },
     computed: {
@@ -49,15 +50,24 @@
         return this.highlight('vacancyDescription');
       },
     },
+    mounted: function() {
+        client.getEntries({
+          content_type: 'advice'
+        }).then((response) => {
+            this.adviceItems = response.items;
+        });
+    },
     methods: {
       highlight(field) {
-        console.log('trigger')
-        if(!this.query) {
-          return this.ad[field];
-        }
-        return this.ad[field].replace(new RegExp(this.query, "gi"), match => {
-          return '<span class="highlightText">' + match + '</span>';
+        let matchedAdviceItems = advisor.findAdviceItems(this.ad[field], this.adviceItems);
+        let showHtml = this.ad[field];
+        matchedAdviceItems.forEach((adviceItem) => {
+          let matchedWord = adviceItem.fields.matchedOn;
+          showHtml = showHtml.replace(new RegExp(matchedWord, "gi"), match => {
+            return '<span class="highlightText" v-on:click="alert(\'je momma\')">' + match + '</span>';
+          });
         });
+        return showHtml;
       }
     },
   }
