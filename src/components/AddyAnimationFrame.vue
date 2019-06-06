@@ -37,7 +37,7 @@
         this.anim.playSegments([1, 180]);
       },
       wave() {
-        this.anim.playSegments([[50, 90],[100, 150]]);
+        this.anim.playSegments([[55, 90],[100, 150]]);
       },
       handleAnimation(anim) { this.anim = anim },
       stop() { this.anim.stop() },

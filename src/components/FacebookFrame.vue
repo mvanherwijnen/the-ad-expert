@@ -1,7 +1,7 @@
 <template>
   <div class="ad-container" v-if="adviceItems">
     <advice-frame v-if="currentAdviceItem" :advice-item="currentAdviceItem"></advice-frame>
-    <addy-animation-frame></addy-animation-frame>
+    <addy-animation-frame ref="addy"></addy-animation-frame >
     <facebook-ad>
       <template #ad-title>
         <h4 v-html="highLightedTitle"></h4>
@@ -102,22 +102,23 @@
         return showHtml;
       },
       showAdvice(id) {
-        console.log(id);
+        this.$refs.addy.wave();
         this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
           return adviceItem.sys.id === id;
         })
       },
       bla() {
         this.ad.title = 'Jelemr';
-      }
+      },
     },
   }
 </script>
 <style>
 #adviceItemFrame {
-  left: calc(50% - 709px);
+  right: calc(50% + 210px);
+  bottom: calc(50% + 120px);
   position: absolute;
-  width: 300px;
+  width: 250px;
 }
 #addy-animation {
     left: calc(50% - 420px);
