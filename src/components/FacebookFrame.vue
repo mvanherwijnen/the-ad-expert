@@ -117,6 +117,7 @@
 <style>
 #adviceItemFrame {
   left: calc(50% - 710px);
+  bottom: calc(50% + 200px);
   position: absolute;
   width: 300px;
 }
