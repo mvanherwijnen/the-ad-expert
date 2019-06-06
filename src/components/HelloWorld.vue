@@ -14,6 +14,7 @@
         <p v-html="highLightedVacancyDescription"/>
       </template>
     </facebook-ad>
+    <button @click="bla">Bla</button>
   </div>
 </template>
 <script>
@@ -31,9 +32,34 @@
           title: 'Lorem ipsum dolor sit amet',
           message: 'Amet aspernatur culpa, cumque enthousiaste dolor eos harum nemo nihil odio quia quidem',
           vacancyTitle: 'Lorem ipsum dolor sit amet',
-          vacancyDescription: 'Amet aspernatur culpa, cumque debitis dolor eos harum nemo nihil odio quia quidem',
+          vacancyDescription: 'Amet aspernatur <span class="selected">culpa</span>, cumque debitis dolor eos harum nemo nihil odio quia quidem',
         },
+        test: '',
         adviceItems: [],
+        currentAdviceItem: null,
+      }
+    },
+    watch: {
+      ad: {
+        handler() {
+          let spans = document.querySelectorAll('span');
+
+          spans.forEach(el => {
+            let adviceId = el.getAttribute('adviceId');
+            let self = this;
+            if (adviceId) {
+              el.addEventListener('mouseover', function(e) {
+                let x = document.getElementsByClassName("selected");
+                for (let i = 0; i < x.length; i++) {
+                  x[i].classList.remove("selected");
+                }
+                e.target.classList.add("selected");
+                self.showAdvice(adviceId)
+              });
+            }
+          })
+        },
+        deep: true
       }
     },
     computed: {
@@ -63,11 +89,21 @@
         let showHtml = this.ad[field];
         matchedAdviceItems.forEach((adviceItem) => {
           let matchedWord = adviceItem.fields.matchedOn;
+          let adviceId = adviceItem.sys.id;
           showHtml = showHtml.replace(new RegExp(matchedWord, "gi"), match => {
-            return '<span class="highlightText" v-on:click="alert(\'je momma\')">' + match + '</span>';
+            return '<span class="highlightText" adviceId="' + adviceId + '">' + match + '</span>';
           });
         });
         return showHtml;
+      },
+      showAdvice(id) {
+        console.log(id);
+        this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
+          return adviceItem.sys.id === id;
+        })
+      },
+      bla() {
+        this.ad.title = 'Jelemr';
       }
     },
   }
@@ -88,5 +124,8 @@
 .highlightText {
   background-color: yellow;
   display: inline;
+}
+.selected {
+  background-color: darkorange;
 }
 </style>

@@ -6,6 +6,7 @@ export function findAdviceItems(content, adviceItems) {
                 if (!matchWord) {
                     return total || false;
                 }
+                matchWord = ' ' + matchWord + ' ';
                 let index = content.indexOf(matchWord);
                 if (index !== -1) {
                     adviceItem.fields.indexOfMatch = index;
