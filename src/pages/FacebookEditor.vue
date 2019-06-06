@@ -4,16 +4,18 @@
       <facebook-frame></facebook-frame>
     </div>
     <div class="add-inputs">
-
+      <facebook-inputs></facebook-inputs>
     </div>
   </div>
 </template>
 
 <script>
 import FacebookFrame from '../components/FacebookFrame';
+import FacebookInputs from '../components/FacebookInputs';
 export default {
   components: {
     FacebookFrame,
+    FacebookInputs,
   }
 }
 </script>
@@ -27,6 +29,8 @@ export default {
   }
 
   .add-inputs {
+    display: flex;
+    flex-direction: column;
     width: 500px;
   }
 

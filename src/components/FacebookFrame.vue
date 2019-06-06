@@ -116,12 +116,12 @@
 </script>
 <style>
 #adviceItemFrame {
-  left: calc(50% - 710px);
+  left: calc(50% - 709px);
   position: absolute;
   width: 300px;
 }
 #addy-animation {
-    left: calc(50% - 410px);
+    left: calc(50% - 420px);
     position: absolute;
 }
 .ad-container {

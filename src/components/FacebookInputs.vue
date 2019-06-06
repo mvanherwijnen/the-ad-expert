@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <input type="text" v-bind="">
+  <div class="editor-inputs">
+    <label for="title">Title</label>
+    <input type="text" id="title">
+    <label for="message">Message</label>
+    <textarea id="message" rows="10"></textarea>
+    <input type="text" id="">
+    <textarea name="" id="" rows="10"></textarea>
   </div>
 </template>
 <script>
@@ -16,24 +21,10 @@
   }
 </script>
 <style>
-#addy-animation {
-  left: calc(50% - 410px);
-  position: absolute;
-}
-.ad-container {
-  height: 100%;
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #fafafa;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.highlightText {
-  background-color: yellow;
-  display: inline;
-}
+.editor-inputs {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
 </style>
