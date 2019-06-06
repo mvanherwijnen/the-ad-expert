@@ -17,3 +17,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .editor-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+  }
+
+  .add-inputs {
+    width: 500px;
+  }
+
+  .add-frame {
+    width: 100%;;
+    position: relative;
+  }
+</style>
+
