@@ -37,6 +37,7 @@
           rendererSettings: this.options.rendererSettings
         }
       );
+      this.anim.setSpeed(2);
       this.$emit('animCreated', this.anim)
     }
   }

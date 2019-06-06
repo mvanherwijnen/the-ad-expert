@@ -1,5 +1,6 @@
 <template>
   <div class="ad-container" v-if="adviceItems">
+    <addy-animation-frame></addy-animation-frame>
     <facebook-ad>
       <template #ad-title>
         <h4 v-html="highLightedTitle"></h4>
@@ -17,19 +18,21 @@
   </div>
 </template>
 <script>
-  import FacebookAd from './FacebookAd';
+  import FacebookAd from './FacebookAd'
+  import AddyAnimationFrame from './AddyAnimationFrame'
   import client from '../../plugins/contentful'
   import * as advisor from '../../plugins/advisor'
 
   export default {
     components: {
       FacebookAd,
+      AddyAnimationFrame,
     },
     data() {
       return {
         ad: {
           title: 'Lorem ipsum dolor sit amet',
-          message: 'Amet aspernatur culpa, cumque enthousiaste dolor eos harum nemo nihil odio quia quidem',
+          message: '🌴 Amet aspernatur culpa, cumque enthousiaste dolor eos harum nemo nihil odio quia quidem',
           vacancyTitle: 'Lorem ipsum dolor sit amet',
           vacancyDescription: 'Amet aspernatur culpa, cumque debitis dolor eos harum nemo nihil odio quia quidem',
         },
@@ -73,12 +76,16 @@
   }
 </script>
 <style>
+#addy-animation {
+  left: calc(50% - 410px);
+  position: absolute;
+}
 .ad-container {
   height: 100%;
   width: 100%;
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   background-color: #fafafa;
   justify-content: center;
