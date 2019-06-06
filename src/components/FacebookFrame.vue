@@ -1,5 +1,6 @@
 <template>
   <div class="ad-container" v-if="adviceItems">
+    <advice-frame v-if="currentAdviceItem" :advice-item="currentAdviceItem"></advice-frame>
     <addy-animation-frame></addy-animation-frame>
     <facebook-ad>
       <template #ad-title>
@@ -21,6 +22,7 @@
 <script>
   import FacebookAd from './FacebookAd'
   import AddyAnimationFrame from './AddyAnimationFrame'
+  import AdviceFrame from './AdviceFrame'
   import client from '../../plugins/contentful'
   import * as advisor from '../../plugins/advisor'
 
@@ -28,6 +30,7 @@
     components: {
       FacebookAd,
       AddyAnimationFrame,
+      AdviceFrame,
     },
     data() {
       return {
@@ -35,7 +38,7 @@
           title: 'Lorem ipsum dolor sit amet',
           message: '🌴 Amet aspernatur culpa, cumque enthousiaste dolor eos harum nemo nihil odio quia quidem',
           vacancyTitle: 'Lorem ipsum dolor sit amet',
-          vacancyDescription: 'Amet aspernatur <span class="selected">culpa</span>, cumque debitis dolor eos harum nemo nihil odio quia quidem',
+          vacancyDescription: 'Amet aspernatur culpa, cumque debitis dolor eos familie nemo nihil odio quia quidem',
         },
         test: '',
         adviceItems: [],
@@ -112,9 +115,14 @@
   }
 </script>
 <style>
-#addy-animation {
-  left: calc(50% - 410px);
+#adviceItemFrame {
+  left: calc(50% - 710px);
   position: absolute;
+  width: 300px;
+}
+#addy-animation {
+    left: calc(50% - 410px);
+    position: absolute;
 }
 .ad-container {
   height: 100%;
