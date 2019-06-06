@@ -1,16 +1,9 @@
 <template>
-    <div id="app">
-        <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
-        <!-- <div>
-            <p>Speed: x{{animationSpeed}}</p>
-            <input type="range" value="1" min="0" max="3" step="0.5"
-                   v-on:change="onSpeedChange" v-model="animationSpeed">
-        </div> -->
-        <!-- <button v-on:click="stop">stop</button>
-        <button v-on:click="pause">pause</button>
-        <button v-on:click="play">play</button> -->
-        <button v-on:click="walkIn">walkIn</button>
-        <button v-on:click="wave">wave</button>
+    <div id="addy-animation">
+      <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
+      <button v-on:click="walkIn">Walk in</button>
+      <button v-on:click="wave">Wave</button>
+      <button v-on:click="play">play</button>
     </div>
 </template>
 
@@ -19,47 +12,41 @@
   import animationData from '../assets/animations/addy.json';
 
   export default {
-    name: 'app',
+    name: 'addy-animation',
     components: {
       'lottie': Lottie
     },
     data() {
       return {
+        anim: {},
         defaultOptions: {
           animationData: animationData,
           loop: false,
+          autoplay: false,
         },
-        animationSpeed: 1
+        animationSpeed: 2,
       }
+    },
+    mounted() {
+      // window.setTimeout(() => {
+      //   this.play();
+      // }, 8000)
     },
     methods: {
       walkIn() {
         this.anim.playSegments([1, 180]);
-        this.anim.setSpeed(2);
       },
       wave() {
-        this.anim.playSegments([[50, 80],[100, 150]]);
-        this.anim.setSpeed(2);
+        this.anim.playSegments([[50, 90],[100, 150]]);
       },
-      handleAnimation: function (anim) {
-        this.anim = anim;
+      handleAnimation(anim) { this.anim = anim },
+      stop() { this.anim.stop() },
+      play() {
+        this.anim.playSegments([45,0]);
       },
+      pause() { this.anim.pause() },
+      onSpeedChange() { this.anim.setSpeed(this.animationSpeed) },
 
-      // stop: function () {
-      //   this.anim.stop();
-      // },
-
-      // play: function () {
-      //   this.anim.play();
-      // },
-
-      // pause: function () {
-      //   this.anim.pause();
-      // },
-
-      // onSpeedChange: function () {
-      //   this.anim.setSpeed(this.animationSpeed);
-      // }
     }
   }
 </script>
