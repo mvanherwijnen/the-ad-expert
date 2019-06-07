@@ -1,6 +1,6 @@
 <template>
     <div id="adviceItemFrame">
-        <h3>{{adviceItem.fields.content}}</h3>
+        <p>{{adviceItem.fields.content}}</p>
     </div>
 </template>
 
@@ -15,10 +15,12 @@
     #adviceItemFrame {
         background-color: black;
         color: white;
-        padding: 40px;
-        -webkit-border-radius: 16px;
-        -moz-border-radius: 16px;
-        border-radius: 16px;
+        padding: 14px;
+        font-size: 14px;
+        line-height: 18px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
     }
 
     #adviceItemFrame:after {
@@ -33,6 +35,6 @@
         border-bottom: 0;
         border-right: 0;
         margin-left: -10px;
-        margin-bottom: -20px;
+        margin-bottom: -12px;
     }
 </style>
