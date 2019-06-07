@@ -1,8 +1,8 @@
 <template>
     <div id="addy-animation">
       <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
-      <!--button v-on:click="walkIn">Walk in</button>
-      <button v-on:click="wave">Wave</button>
+      <button v-on:click="spongeBob">SpongeBob</button>
+      <!--button v-on:click="wave">Wave</button>
       <button v-on:click="play">Walk out</button>
       <button v-on:click="phone">phone</button>
         <button v-on:click="angry">angry</button>
@@ -58,6 +58,9 @@
       },
       wave() {
         this.anim.playSegments([[55, 90],[100, 150]], true);
+      },
+      spongeBob() {
+        this.anim.playSegments([360, 380], true);
       },
       randomAction() {
         let number = Math.floor(Math.random() * 4);
