@@ -1,7 +1,7 @@
 <template>
     <div id="addy-animation">
       <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
-      <!-- <button v-on:click="spongeBob">SpongeBob</button> -->
+      <button v-on:click="jedi">Jedi</button>
       <!--button v-on:click="wave">Wave</button>
       <button v-on:click="play">Walk out</button>
       <button v-on:click="phone">phone</button>
@@ -19,9 +19,6 @@
     components: {
       'lottie': Lottie
     },
-    props: [
-        'active'
-    ],
     data() {
       return {
         anim: {},
@@ -31,38 +28,72 @@
           autoplay: false,
         },
         animationSpeed: 1.5,
+        intervalsWithoutAction: 0,
+        active: false
       }
     },
-    watch: {
-        active: function (newValue) {
-            if (newValue) {
-                this.walkIn();
-            }
-        }
-    },
     mounted() {
-      //this.anim.playSegments([1,0]);
+        const self = this;
+        setInterval(function(){
+            if (!self.active) {
+                return;
+            }
+            console.log(self.intervalsWithoutAction);
+            switch (self.intervalsWithoutAction) {
+                case 1: self.impatient(false); break;
+                case 2: self.phone(false); break;
+                case 3: self.play(false); break;
+            }
+            self.intervalsWithoutAction++;
+        }, 3000);
     },
     methods: {
       walkIn() {
+        this.intervalsWithoutAction = 0;
         this.anim.playSegments([1, 150], true);
+        this.active = true;
       },
-      phone() {
-        this.anim.playSegments([270, 360], true);
+      phone(userTriggered = true) {
+          if (userTriggered) {
+              this.intervalsWithoutAction = 0;
+          }
+          this.anim.playSegments([270, 360], true);
       },
-      impatient() {
-        this.anim.playSegments([150, 230], true);
+      impatient(userTriggered = true) {
+          if (userTriggered) {
+              this.intervalsWithoutAction = 0;
+          }
+          this.anim.playSegments([150, 230], true);
       },
       angry() {
-        this.anim.playSegments([230, 250], true);
+          this.intervalsWithoutAction = 0;
+          this.anim.playSegments([230, 250], true);
       },
       wave() {
-        this.anim.playSegments([[55, 90],[100, 150]], true);
+          this.intervalsWithoutAction = 0;
+          this.anim.playSegments([[55, 90],[100, 150]], true);
+      },
+      jedi() {
+        if (!this.active) {
+            this.walkIn();
+            return;
+        }
+        this.intervalsWithoutAction = 0;
+        this.anim.playSegments([390, 400], true);
       },
       spongeBob() {
-        this.anim.playSegments([360, 380], true);
+          if (!this.active) {
+              this.walkIn();
+              return;
+          }
+          this.intervalsWithoutAction = 0;
+          this.anim.playSegments([360, 380], true);
       },
       randomAction() {
+          if (!this.active) {
+              this.walkIn();
+              return;
+          }
         let number = Math.floor(Math.random() * 4);
         switch (number) {
             case 0: this.phone(); break;
@@ -75,7 +106,10 @@
       handleAnimation(anim) { this.anim = anim },
       stop() { this.anim.stop() },
       play() {
-        this.anim.playSegments([45,0], true);
+          this.intervalsWithoutAction = 0;
+          this.anim.playSegments([45,0], true);
+          this.active = false;
+          this.$emit('walk-away')
       },
       pause() { this.anim.pause() },
       onSpeedChange() { this.anim.setSpeed(this.animationSpeed) },
