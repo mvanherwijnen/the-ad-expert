@@ -100,6 +100,9 @@
         return showHtml;
       },
       showAdvice(id) {
+        if(id === '7GMxa9XAk66xzaTjbvRbMk') {
+          console.log('show retarded')
+        }
         this.$refs.addy.wave();
         this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
           return adviceItem.sys.id === id;
@@ -111,12 +114,13 @@
 <style>
 #adviceItemFrame {
   right: calc(50% + 210px);
-  bottom: calc(50% + 120px);
+  bottom: calc(50% + 46px);
   position: absolute;
   width: 250px;
 }
 #addy-animation {
-    left: calc(50% - 420px);
+    left: calc(50% - 410px);
+    margin-top: 74px;
     position: absolute;
 }
 .ad-container {
