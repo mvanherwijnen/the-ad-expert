@@ -6,10 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     ad: {
-      title: 'A nice title for your ad',
-      message: 'Amet aspernatur culpa, cumque enthousiaste dolor eos harum nemo nihil odio quia quidem',
-      vacancyTitle: 'Lorem ipsum dolor sit amet',
-      vacancyDescription: 'Amet aspernatur culpa, cumque debitis dolor eos familie nemo nihil odio quia quidem',
+      title: 'This is the name of the company',
+      message: 'Start with the benefits of the advertised job',
+      vacancyTitle: 'Put a descriptive job title here',
+      vacancyDescription: 'Say something about the features',
     },
   },
   mutations: {
