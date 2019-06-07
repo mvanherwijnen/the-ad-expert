@@ -87,6 +87,8 @@
           content_type: 'advice'
         }).then((response) => {
             this.adviceItems = response.items;
+        }).then(() => {
+          this.$store.commit('lelijkeHack');
         });
     },
     methods: {
@@ -104,9 +106,10 @@
       },
       showAdvice(id) {
         if(id === '7GMxa9XAk66xzaTjbvRbMk') {
-          console.log('show retarded')
+          this.$refs.addy.spongeBob();
+        } else {
+          this.$refs.addy.randomAction();
         }
-        this.$refs.addy.randomAction();
         this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
           return adviceItem.sys.id === id;
         })
