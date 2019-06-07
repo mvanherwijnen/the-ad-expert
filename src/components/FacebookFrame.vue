@@ -1,7 +1,7 @@
 <template>
   <div class="ad-container" v-if="adviceItems">
     <advice-frame v-if="currentAdviceItem" :advice-item="currentAdviceItem"></advice-frame>
-    <addy-animation-frame ref="addy"></addy-animation-frame >
+    <addy-animation-frame ref="addy" :active="currentAdviceItem !== null"></addy-animation-frame >
     <facebook-ad>
       <template #ad-title>
         <h4 v-html="highLightedTitle"></h4>
@@ -48,7 +48,10 @@
             let adviceId = el.getAttribute('adviceId');
             let self = this;
             if (adviceId) {
-              el.addEventListener('mouseover', function(e) {
+              el.addEventListener('mouseenter', function(e) {
+                  if (e.target.classList.contains("selected")) {
+                      return;
+                  }
                 let x = document.getElementsByClassName("selected");
                 for (let i = 0; i < x.length; i++) {
                   x[i].classList.remove("selected");
@@ -103,7 +106,7 @@
         if(id === '7GMxa9XAk66xzaTjbvRbMk') {
           console.log('show retarded')
         }
-        this.$refs.addy.wave();
+        this.$refs.addy.randomAction();
         this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
           return adviceItem.sys.id === id;
         })

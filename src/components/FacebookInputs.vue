@@ -5,7 +5,7 @@
     <label for="message">Message</label>
     <textarea v-model="ad.message" @input="lelijkeDingen" id="message" rows="10"></textarea>
     <label for="vacancy-title">Vacacy title</label>
-    <input v-model="ad.vacancyTitle" @input="lelijkeDingen" type="vacancy-title" id="">
+    <input v-model="ad.vacancyTitle" @input="lelijkeDingen" type="text" id="vacancy-title">
     <label for="vacancy-description">Vacacy Description</label>
     <textarea v-model="ad.vacancyDescription" @input="lelijkeDingen" id="vacancy-description" rows="10"></textarea>
   </div>
