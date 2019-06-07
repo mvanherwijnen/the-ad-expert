@@ -1,7 +1,7 @@
 <template>
     <div id="addy-animation">
       <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
-      <button v-on:click="jedi">Jedi</button>
+      <!-- <button v-on:click="jedi">Jedi</button> -->
       <!--button v-on:click="wave">Wave</button>
       <button v-on:click="play">Walk out</button>
       <button v-on:click="phone">phone</button>
@@ -94,12 +94,10 @@
               this.walkIn();
               return;
           }
-        let number = Math.floor(Math.random() * 4);
+        let number = Math.floor(Math.random() * 2);
         switch (number) {
-            case 0: this.phone(); break;
-            case 1: this.impatient(); break;
-            case 2: this.angry(); break;
-            case 3: this.wave(); break;
+            case 0: this.angry(); break;
+            case 1: this.wave(); break;
             default: this.wave(); break;
         }
       },
