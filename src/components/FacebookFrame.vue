@@ -1,7 +1,7 @@
 <template>
   <div class="ad-container" v-if="adviceItems">
     <advice-frame v-if="currentAdviceItem" :advice-item="currentAdviceItem"></advice-frame>
-    <addy-animation-frame ref="addy" :active="currentAdviceItem !== null"></addy-animation-frame >
+    <addy-animation-frame ref="addy" v-on:walk-away="currentAdviceItem = null"></addy-animation-frame >
     <facebook-ad>
       <template #ad-title>
         <h4 v-html="highLightedTitle"></h4>
@@ -103,8 +103,13 @@
         return showHtml;
       },
       showAdvice(id) {
+        console.log(id);
         if(id === '7GMxa9XAk66xzaTjbvRbMk') {
           console.log('show retarded')
+        }
+        if(id === '3gZGV3IYbRU1Lh95khBVac') {
+          this.$refs.addy.jedi();
+          return;
         }
         this.$refs.addy.randomAction();
         this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
