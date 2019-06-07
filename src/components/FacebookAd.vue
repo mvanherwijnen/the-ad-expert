@@ -3,7 +3,7 @@
     <div class="facebook-preview">
     <div class="company">
       <div class="company-logo">
-        <img :src="ad.page.icon">
+        <img src="images/apple-logo.png">
       </div>
       <div class="page-name">
         <slot name="ad-title">Default title</slot>
@@ -12,7 +12,7 @@
     </div>
     <slot name="ad-message">Whatever Eddy wants you to write</slot>
     <div class="image">
-      <img :src="ad.image">
+      <img src="facebook-cover.png">
     </div>
     <div class="main">
       <slot name="vacancy-title">Lorem ipsum dolor sit amet</slot>
@@ -31,7 +31,7 @@
           message: 'Facere, laudantium!',
           title: 'Lorem ipsum dolor sit amet',
           description: 'Amet aspernatur culpa, cumque debitis dolor eos harum nemo nihil odio quia quidem',
-          image: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', // transparent pixel
+          image: './assets/images/facebook-cover.png', // transparent pixel
           page: {
             name: 'The Lorem Company',
             icon: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', // transparent pixel
