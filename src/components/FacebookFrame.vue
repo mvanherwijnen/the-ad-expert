@@ -148,4 +148,14 @@
 .selected {
   background-color: darkorange;
 }
+
+@media (max-width: 979px) {
+  #addy-animation {
+    position: relative;
+    margin-top: 140px;
+  }
+  #adviceItemFrame {
+    right: calc(50% + 70px);
+  }
+}
 </style>

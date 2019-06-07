@@ -1,7 +1,7 @@
 <template>
     <div id="addy-animation">
       <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
-      <button v-on:click="spongeBob">SpongeBob</button>
+      <!-- <button v-on:click="spongeBob">SpongeBob</button> -->
       <!--button v-on:click="wave">Wave</button>
       <button v-on:click="play">Walk out</button>
       <button v-on:click="phone">phone</button>
