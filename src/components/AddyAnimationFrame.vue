@@ -33,26 +33,25 @@
       }
     },
     mounted() {
-
+        const self = this;
+        setInterval(function(){
+            if (!self.active) {
+                return;
+            }
+            console.log(self.intervalsWithoutAction);
+            switch (self.intervalsWithoutAction) {
+                case 1: self.impatient(false); break;
+                case 2: self.phone(false); break;
+                case 3: self.play(false); break;
+            }
+            self.intervalsWithoutAction++;
+        }, 3000);
     },
     methods: {
       walkIn() {
         this.intervalsWithoutAction = 0;
         this.anim.playSegments([1, 150], true);
         this.active = true;
-          const self = this;
-          setInterval(function(){
-              if (!self.active) {
-                  return;
-              }
-              console.log(self.intervalsWithoutAction);
-              switch (self.intervalsWithoutAction) {
-                  case 1: self.impatient(false); break;
-                  case 2: self.phone(false); break;
-                  case 3: self.play(false); break;
-              }
-              self.intervalsWithoutAction++;
-          }, 3000);
       },
       phone(userTriggered = true) {
           if (userTriggered) {
