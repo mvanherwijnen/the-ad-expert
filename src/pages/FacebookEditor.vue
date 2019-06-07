@@ -38,5 +38,11 @@ export default {
     width: 100%;;
     position: relative;
   }
+
+  @media (max-width: 979px) {
+    .editor-layout {
+      flex-direction: column;
+    }
+  }
 </style>
 

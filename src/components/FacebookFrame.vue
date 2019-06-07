@@ -87,6 +87,8 @@
           content_type: 'advice'
         }).then((response) => {
             this.adviceItems = response.items;
+        }).then(() => {
+          this.$store.commit('lelijkeHack');
         });
     },
     methods: {
@@ -104,17 +106,18 @@
       },
       showAdvice(id) {
         console.log(id);
+        this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
+          return adviceItem.sys.id === id;
+        })
         if(id === '7GMxa9XAk66xzaTjbvRbMk') {
-          console.log('show retarded')
+          this.$refs.addy.spongeBob();
+          return;
         }
         if(id === '3gZGV3IYbRU1Lh95khBVac') {
           this.$refs.addy.jedi();
           return;
         }
         this.$refs.addy.randomAction();
-        this.currentAdviceItem = this.adviceItems.find(function (adviceItem) {
-          return adviceItem.sys.id === id;
-        })
       },
     },
   }
@@ -149,5 +152,15 @@
 }
 .selected {
   background-color: darkorange;
+}
+
+@media (max-width: 979px) {
+  #addy-animation {
+    position: relative;
+    margin-top: 140px;
+  }
+  #adviceItemFrame {
+    right: calc(50% + 70px);
+  }
 }
 </style>
